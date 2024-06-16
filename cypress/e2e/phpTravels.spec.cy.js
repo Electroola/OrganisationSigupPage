@@ -1,4 +1,4 @@
-describe('template spec', () => {
+describe('Registration Form', () => {
 
 
   it('Verify the Hambuger Icon is Visible', () => {
