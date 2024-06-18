@@ -1,30 +1,12 @@
-name: Cypress Tests
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
+name: Cypress Test
+on: push
 jobs:
-  cypress-tests:
+  cypress-run:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run Cypress Test
+        uses: cypress-io/github-action@v5
         with:
-          node-version: '14'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Cypress tests
-        run: |
-          npx cypress run --spec "cypress/integration/HerokuSignUPs.cy.js"
-          npx cypress run --spec "cypress/integration/phpTravels.spec.cy.js"
+          node-version: 16
