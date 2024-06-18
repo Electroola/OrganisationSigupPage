@@ -2,7 +2,7 @@ describe('Heroku Signup Test', () => {
   beforeEach(() => {
     cy.visit('https://signup.heroku.com/');
     // Dismiss cookie banner if it appears
-    cy.get('#onetrust-accept-btn-handler').click();
+    cy.get('#onetrust-accept-btn-handler', { timeout: 10000 }).click();
   });
 
   it('completes the signup form', () => {
