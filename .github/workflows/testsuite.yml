@@ -1,12 +1,25 @@
-name: Cypress Test
-on: push
+name: Run Cypress Tests
+
+on: [push, pull_request]
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Run Cypress Test
-        uses: cypress-io/github-action@v5
-        with:
-          node-version: 16
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Tests-Suites.spec.cy.js
+      run: npx cypress run --spec "cypress/integration/Tests-Suites.spec.cy.js"
+
+    - name: Run HerokuPositiveLoginTest.spec.cy.js
+      run: npx cypress run --spec "cypress/integration/HerokuPositiveLoginTest.spec.cy.js"
